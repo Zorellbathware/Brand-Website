@@ -265,9 +265,10 @@ const Index = () => {
                   <motion.article whileHover={{ y: -6 }} className="overflow-hidden rounded-[24px] border border-white/20 bg-white/10 p-2 backdrop-blur">
                     <div
                       className="relative h-[560px] w-[320px] overflow-hidden rounded-[18px] touch-none select-none"
-                      style={{ touchAction: "none", userSelect: "none" }}
+                      style={{ touchAction: "pan-y", userSelect: "none" }}
                       onDragStart={(e) => e.preventDefault()}
                       onPointerDown={(e) => {
+                        if (e.pointerType === "touch") return;
                         if (e.button !== 0) return;
                         e.preventDefault();
                         dragStartYRef.current = e.clientY;
@@ -275,6 +276,7 @@ const Index = () => {
                         (e.currentTarget as HTMLDivElement).setPointerCapture(e.pointerId);
                       }}
                       onPointerMove={(e) => {
+                        if (e.pointerType === "touch") return;
                         if (dragStartYRef.current === null || dragTriggeredRef.current || animatingRef.current) return;
                         const delta = e.clientY - dragStartYRef.current;
                         if (Math.abs(delta) < 36) return;

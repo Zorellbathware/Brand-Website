@@ -223,7 +223,10 @@ const Index = () => {
           <div className="mx-auto max-w-7xl">
             <div className="relative overflow-hidden rounded-[36px] border border-[#d8cab8] bg-[#14110e]">
               <div className="absolute inset-0">
-                <img src={heroLuxuryImage} alt="Zorell premium bathroom" className="h-full w-full object-cover opacity-45" loading="eager" />
+                <video className="h-full w-full object-cover opacity-55" autoPlay muted loop playsInline preload="metadata" poster={heroLuxuryImage}>
+                  <source src="/contact-section-video.mp4" type="video/mp4" />
+                  <source src="/contact-section-video.webm" type="video/webm" />
+                </video>
               </div>
               <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(20,17,14,0.94)_0%,rgba(20,17,14,0.72)_45%,rgba(20,17,14,0.35)_100%)]" />
 

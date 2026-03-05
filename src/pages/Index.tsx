@@ -315,35 +315,35 @@ const Index = () => {
                         <img
                           src={heroGallery[(baseImageIndex - 1 + galleryLength) % galleryLength]}
                           alt="Premium product visual"
-                          className="absolute left-0 top-0 h-44 w-[320px] -translate-y-48 rounded-[18px] object-cover"
+                          className="absolute left-0 top-0 h-[176px] w-[320px] -translate-y-[192px] rounded-[18px] object-cover"
                           loading="eager"
                           draggable={false}
                         />
                         <img
                           src={heroGallery[baseImageIndex % galleryLength]}
                           alt="Premium product visual"
-                          className="absolute left-0 top-0 h-44 w-[320px] rounded-[18px] object-cover"
+                          className="absolute left-0 top-0 h-[176px] w-[320px] rounded-[18px] object-cover"
                           loading="eager"
                           draggable={false}
                         />
                         <img
                           src={heroGallery[(baseImageIndex + 1) % galleryLength]}
                           alt="Premium product visual"
-                          className="absolute left-0 top-0 h-44 w-[320px] translate-y-48 rounded-[18px] object-cover"
+                          className="absolute left-0 top-0 h-[176px] w-[320px] translate-y-[192px] rounded-[18px] object-cover"
                           loading="eager"
                           draggable={false}
                         />
                         <img
                           src={heroGallery[(baseImageIndex + 2) % galleryLength]}
                           alt="Premium product visual"
-                          className="absolute left-0 top-0 h-44 w-[320px] translate-y-96 rounded-[18px] object-cover"
+                          className="absolute left-0 top-0 h-[176px] w-[320px] translate-y-[384px] rounded-[18px] object-cover"
                           loading="eager"
                           draggable={false}
                         />
                         <img
                           src={heroGallery[(baseImageIndex + 3) % galleryLength]}
                           alt="Premium product visual"
-                          className="absolute left-0 top-0 h-44 w-[320px] translate-y-[36rem] rounded-[18px] object-cover"
+                          className="absolute left-0 top-0 h-[176px] w-[320px] translate-y-[576px] rounded-[18px] object-cover"
                           loading="eager"
                           draggable={false}
                         />

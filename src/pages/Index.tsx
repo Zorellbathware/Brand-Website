@@ -1,4 +1,4 @@
-﻿import {
+import {
   ArrowRight,
   Download,
   Headset,
@@ -14,7 +14,7 @@
   X,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { type FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import heroLuxuryImage from "@/assets/custom/hero-luxury.webp";
 import heroBasinImage from "@/assets/custom/hero-basin.webp";
 import heroMoodImage from "@/assets/custom/hero-mood.webp";
@@ -90,6 +90,7 @@ const rise = {
 
 const Index = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const heroGallery = [
     heroBasinImage,
     heroMoodImage,
@@ -149,6 +150,12 @@ const Index = () => {
       if (cycleTimeoutRef.current) clearTimeout(cycleTimeoutRef.current);
     };
   }, [stepHeroTicker]);
+
+  const handleEnquirySubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setFormSubmitted(true);
+    event.currentTarget.reset();
+  };
 
   return (
     <div className="min-h-screen bg-[#f6f1e8] text-[#15130f]">
@@ -446,11 +453,11 @@ const Index = () => {
                     </p>
                     <h3 className="text-base leading-tight md:text-2xl">{item.title}</h3>
                     <p className="hidden text-sm leading-relaxed text-white/75 md:block">{item.text}</p>
-                    <a href="#contact" className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.08em] text-white/90 md:hidden">
+                    <a href="#enquiry-form" className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.08em] text-white/90 md:hidden">
                       Enquire
                       <ArrowRight className="h-3.5 w-3.5" />
                     </a>
-                    <a href="#contact" className="hidden items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-white md:inline-flex">
+                    <a href="#enquiry-form" className="hidden items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-white md:inline-flex">
                       Enquire
                       <ArrowRight className="h-4 w-4" />
                     </a>
@@ -498,6 +505,112 @@ const Index = () => {
                   </a>
                 </div>
               </motion.div>
+            </div>
+          </div>
+        </section>
+
+        <section id="enquiry-form" className="relative overflow-hidden bg-[#efe6da] px-5 py-14 md:px-10 md:py-20">
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(165deg,#efe6da_0%,#e6dbce_48%,#ddd0bf_100%)]" />
+          <div className="pointer-events-none absolute -left-24 top-[-7rem] h-[26rem] w-[26rem] rounded-[34%] border border-[#ccbca7]/70 bg-[#f4ece2]/55" />
+          <div className="pointer-events-none absolute -right-28 bottom-[-9rem] h-[30rem] w-[30rem] rounded-[38%] border border-[#c9b8a0]/60 bg-[#d8c7b2]/55" />
+          <div className="pointer-events-none absolute inset-0 opacity-[0.16] bg-[radial-gradient(circle,rgba(112,91,70,0.25)_1px,transparent_1px)] [background-size:22px_22px]" />
+
+          <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[34px] border border-[#d8c8b4] bg-white shadow-[0_20px_45px_rgba(41,28,15,0.08)]">
+            <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
+              <div className="relative min-h-[360px] overflow-hidden">
+                <video className="h-full w-full object-cover" autoPlay muted loop playsInline preload="metadata">
+                  <source src="/contact-section-video.mp4" type="video/mp4" />
+                  <source src="/contact-section-video.webm" type="video/webm" />
+                </video>
+                <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(15,10,7,0.74)_0%,rgba(15,10,7,0.22)_55%,rgba(15,10,7,0.08)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-6 text-white md:p-8">
+                  <div className="max-w-[30rem] rounded-2xl border border-white/15 bg-[rgba(12,9,7,0.58)] p-4 backdrop-blur-[2px] md:p-5">
+                    <p className="text-xs tracking-[0.2em] text-white/85">ENQUIRY DESK</p>
+                    <h3 className="mt-2 text-3xl leading-tight md:text-4xl">Find your right mixer and bathware set.</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-white/90">Submit your requirements and get a quick call back with pricing and product guidance.</p>
+                  </div>
+                </div>
+              </div>
+
+              <form
+                onSubmit={handleEnquirySubmit}
+                onInput={() => {
+                  if (formSubmitted) setFormSubmitted(false);
+                }}
+                className="grid content-start gap-4 bg-[#fffdfa] p-6 md:grid-cols-2 md:p-10"
+              >
+                <div className="md:col-span-2 flex items-center justify-between gap-4">
+                  <p className="text-xs tracking-[0.2em] text-[#8a7560]">SHARE REQUIREMENT</p>
+                  <a
+                    href="tel:+919995226622"
+                    className="inline-flex items-center gap-2 rounded-full border border-[#ccb79d] bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-[#171512]"
+                  >
+                    <PhoneCall className="h-3.5 w-3.5" />
+                    Call Sales
+                  </a>
+                </div>
+                <label className="grid gap-2">
+                  <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[#6d5f51]">Full Name</span>
+                  <input
+                    type="text"
+                    name="fullName"
+                    required
+                    placeholder="Enter your name"
+                    className="w-full rounded-xl border border-[#d8c8b4] bg-[#fcfaf7] px-4 py-3 text-sm text-[#171512] outline-none transition focus:border-[#d63e43]"
+                  />
+                </label>
+                <label className="grid gap-2">
+                  <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[#6d5f51]">Phone Number</span>
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    placeholder="+91"
+                    className="w-full rounded-xl border border-[#d8c8b4] bg-[#fcfaf7] px-4 py-3 text-sm text-[#171512] outline-none transition focus:border-[#d63e43]"
+                  />
+                </label>
+                <label className="grid gap-2">
+                  <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[#6d5f51]">Email</span>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="name@example.com"
+                    className="w-full rounded-xl border border-[#d8c8b4] bg-[#fcfaf7] px-4 py-3 text-sm text-[#171512] outline-none transition focus:border-[#d63e43]"
+                  />
+                </label>
+                <label className="grid gap-2">
+                  <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[#6d5f51]">Product Interest</span>
+                  <input
+                    type="text"
+                    name="interest"
+                    required
+                    placeholder="Basin mixer, WC, accessories..."
+                    className="w-full rounded-xl border border-[#d8c8b4] bg-[#fcfaf7] px-4 py-3 text-sm text-[#171512] outline-none transition focus:border-[#d63e43]"
+                  />
+                </label>
+                <label className="grid gap-2 md:col-span-2">
+                  <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[#6d5f51]">Message</span>
+                  <textarea
+                    name="message"
+                    required
+                    rows={5}
+                    placeholder="Tell us about your project or requirement."
+                    className="w-full rounded-xl border border-[#d8c8b4] bg-[#fcfaf7] px-4 py-3 text-sm text-[#171512] outline-none transition focus:border-[#d63e43]"
+                  />
+                </label>
+                <div className="md:col-span-2">
+                  <button
+                    type="submit"
+                    className="inline-flex items-center justify-center rounded-full bg-[#d63e43] px-8 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white shadow-[0_12px_26px_rgba(214,62,67,0.28)]"
+                  >
+                    Submit Enquiry
+                  </button>
+                  {formSubmitted && (
+                    <p className="mt-3 text-sm text-[#2f7d4f]">Thanks. Your enquiry has been recorded. Our team will contact you soon.</p>
+                  )}
+                </div>
+              </form>
             </div>
           </div>
         </section>
@@ -617,7 +730,7 @@ const Index = () => {
         </div>
 
         <div className="mx-auto mt-8 flex max-w-7xl flex-col gap-2 border-t border-white/10 pt-6 text-sm text-white/65 md:flex-row md:items-center md:justify-between">
-          <p>© 2026 Zorell. All rights reserved.</p>
+          <p>(c) 2026 Zorell. All rights reserved.</p>
           <p>Premium bathware for signature interiors.</p>
         </div>
       </footer>
@@ -626,5 +739,3 @@ const Index = () => {
 };
 
 export default Index;
-
-
